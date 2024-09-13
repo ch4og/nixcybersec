@@ -32,20 +32,3 @@ else:
     pkgs = get_pkgs()
     for pkg in pkgs:
         print(pkg)
-
-# #!/usr/bin/env bash
-# 	if [ "$1" == "-h" ] || [ "$2" == "--help" ]; then
-# 		echo -e "Usage: tools [query]"
-# 		echo -e "List all available tools or search for a specific tool"
-# 		exit 0
-# 	fi
-# 	if [ -z "$1" ]; then
-# 		echo -e "Available tools:"
-# 		cat $PATH_CYBERSEC/pkgs.nix | head -n -2 | tail -n +4 | sed 's/ //g'
-# 	else
-# 		echo -e "Searching for \033[0;32m$1\033[0m..."
-# 		cat $PATH_CYBERSEC/pkgs.nix | head -n -2 | tail -n +4 | sed 's/ //g' | grep -v "#" | grep --color=auto "$1"
-# 	fi
-#
-# 	python3 $PATH_CYBERSEC/tools/search.py
-#

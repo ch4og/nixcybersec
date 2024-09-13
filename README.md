@@ -2,8 +2,8 @@
 
 ### This is a flake that can be used to run shell with cybersecurity tools.
 
-This flake uses unfree software!
-Also since python2 is EOL it is in unsafe packages list.
+This flake uses unfree software! Also since python2 is EOL it is in unsafe
+packages list.
 
 ## Usage
 
@@ -11,9 +11,9 @@ Also since python2 is EOL it is in unsafe packages list.
 nix develop github:ch4og/nixcybersec
 ```
 
-And of course you can create an alias for it
+#### To list or search tools there is `tools` command.
 
-bash:
+#### You can also create shell alias for this flake:
 
 ```nix
 bash.shellAliases = {
@@ -21,15 +21,13 @@ bash.shellAliases = {
 };
 ```
 
-zsh:
+So you will be able to run shell with cybersec tools with `cybersec` command.
 
-```nix
-zsh.shellAliases = {
-  cybersec = "nix develop github:ch4og/nixcybersec -c zsh";
-};
-```
+Or specific tool with `cybersec -c <tool>`
 
-TODO:
+### TODO:
 
+- [ ] Make script to connect to HTB/THM VPNs fast
 - [ ] Make tools script give info about each tool
 - [ ] Create some kind of modularity for the tools
+- [ ] Way to temporarily add to hosts
