@@ -7,17 +7,19 @@
 
   outputs = { self, nixpkgs }:
     let
+      system = "x86_64-linux";
       pkgs = import nixpkgs {
-        system = "x86_64-linux";
-        config.allowUnfree = true;
-        config.permittedInsecurePackages = [ "python-2.7.18.8" ];
+        inherit system;
+        config = {
+          allowUnfree = true;
+          allowInsecurePredicate = p: true;
+        };
       };
     in
     {
-      devShell.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.mkShell {
-        packages = (import ./pkgs.nix { inherit pkgs; });
-        shellHook = builtins.replaceStrings [ "SELF_HERE" ] [ (toString self) ]
-          (builtins.readFile ./hook.sh);
+      devShells.x86_64-linux = import ./shells.nix {
+        inherit pkgs;
+        inherit self;
       };
     };
 }

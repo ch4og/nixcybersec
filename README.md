@@ -2,16 +2,20 @@
 
 ## This is a flake that can be used to run shell with cybersecurity tools.
 
-This flake uses unfree software! Also since Python 2 is EOL it is in unsafe
-packages list.
-
 ### Usage
 
 ```bash
 nix develop github:ch4og/nixcybersec
 ```
 
-To list or search tools there is `tools` command.
+Or if you want to use specific category:
+
+```bash
+nix develop github:ch4og/nixcybersec#<category>
+```
+
+To list tools there is `tools` command. You can use `grep` with it to search for
+specific tool.
 
 You can also create shell alias for this flake:
 
@@ -45,5 +49,5 @@ So you can use `sudo -E wireshark`.
 
 ### TODO:
 
-- [ ] Make tools script give info about each tool
-- [ ] Create separate devshells for each category
+- [x] Make tools script give info about each tool
+- [x] Create separate devshells for each category

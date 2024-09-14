@@ -1,78 +1,109 @@
 { pkgs, ... }:
 let
-  pkgslist = with pkgs; [
-    # Essentials
-    git
-    python3
-    wget
-    curl
-    zsh
-    netcat-gnu
-    wordlists
-    python2
-    unrar
-    unzip
-    p7zip
-    zip
-    unzip
-    freerdp3
-    remmina
-    tigervnc
-    samba
-    openvpn
-    util-linux
-    vim
+  packages = {
 
-    # Cracking
-    thc-hydra
-    hashcat
-    hashcat-utils
-    john
+    general = with pkgs; [
+      git
+      python3
+      wget
+      curl
+      htop
+      ripgrep
+      file
+      zsh
+      netcat-gnu
+      wordlists
+      python2
+      unrar
+      unzip
+      p7zip
+      zip
+      cabextract
+      freerdp3
+      remmina
+      tigervnc
+      samba
+      openvpn
+      util-linux
+      vim
+      wireguard-go
+      wireguard-tools
+      xrdp
+      dos2unix
+      screen
+      tmux
+    ];
 
-    # Exploits
-    metasploit
-    pwntools
-    exploitdb
-    go-exploitdb
-    sploitscan
+    cracking = with pkgs; [
+      crowbar
+      thc-hydra
+      hashcat
+      hashcat-utils
+      john
+    ];
 
-    # Web
-    ffuf
-    burpsuite
-    caido
-    sqlmap
-    dirb
-    wfuzz
-    gobuster
-    wpscan
-    nikto
+    exploits = with pkgs; [
+      metasploit
+      pwntools
+      exploitdb
+      go-exploitdb
+      sploitscan
+    ];
 
-    # Networking
-    rustscan
-    nmap
-    wireshark
-    tcpdump
-    smbmap
-    knockpy
+    web = with pkgs; [
+      ffuf
+      dirb
+      wfuzz
+      gobuster
+      wpscan
+      nikto
+      knockpy
+      subfinder
+      burpsuite
+      caido
+      sqlmap
+      katana
+    ];
 
-    # Reverse and Binary
-    gdb
-    pwndbg
-    autopsy
-    ghidra-bin
+    network = with pkgs; [
+      wireshark
+      wireshark-cli
+      tcpdump
+      smbmap
+      rustscan
+      nmap
+    ];
 
-    # Forensics and Steganography
-    stegseek
-    autopsy
-    binwalk
-    exiftool
+    reverse = with pkgs; [
+      checksec
+      bingrep
+      binwalk
+      radare2
+      unicorn
+      gdb
+      gef
+      pwndbg
+      ghidra-bin
+    ];
 
-    # Windows
-    enum4linux-ng
-    mimikatz
-    powersploit
-    nbtscan
-    bloodhound
-    netexec
-  ];
-in pkgslist
+    forensics = with pkgs; [
+      stegseek
+      foremost
+      autopsy
+      binwalk
+      exiftool
+      git-secret
+    ];
+
+    windows = with pkgs; [
+      enum4linux-ng
+      mimikatz
+      powersploit
+      nbtscan
+      bloodhound
+      netexec
+    ];
+
+  };
+in
+packages

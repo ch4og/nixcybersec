@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+
+import os
+import json
+
+
+def package_description(package):
+    description_path = os.path.join(os.environ["PATH_CYBERSEC"], "tools", "desc.json")
+    with open(description_path, "r") as file:
+        description = json.load(file)
+    return description[package]
+
+
+def get_packages():
+    cybersec_path = os.path.join(os.environ["PATH_CYBERSEC"], "pkgs.nix")
+    packages = {}
+    current_list = None
+
+    with open(cybersec_path, "r") as file:
+        for line in file:
+            if "with pkgs;" in line:
+                current_list = line.split()[0]
+                packages[current_list] = []
+            elif current_list and "];" not in line:
+                packages[current_list].append(line.strip())
+            elif current_list and "];" in line:
+                current_list = None
+
+    packages["default"] = []
+    for shell in packages:
+        packages["default"].extend(packages[shell])
+
+    return packages
+
+
+def current_packages(shell_name):
+    packages = get_packages()
+    if shell_name == "default":
+        return sorted(set(packages[shell_name]))
+    return sorted(set(packages[shell_name] + packages["general"]))
+
+
+def main():
+    current_shell = os.environ["name"].split("-")[0]
+    print("Available tools:")
+    for pkg in current_packages(current_shell):
+        print(f"\033[0;32m{pkg}\033[0m - {package_description(pkg)}")
+
+
+if __name__ == "__main__":
+    main()
