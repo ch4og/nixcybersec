@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 let
   packages = {
 
@@ -84,6 +84,9 @@ let
       gef
       pwndbg
       ghidra-bin
+    ]
+    ++ [
+      inputs.binsider.packages.${pkgs.system}.binsider
     ];
 
     forensics = with pkgs; [

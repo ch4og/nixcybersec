@@ -8,7 +8,17 @@ def package_description(package):
     description_path = os.path.join(os.environ["PATH_CYBERSEC"], "tools", "desc.json")
     with open(description_path, "r") as file:
         description = json.load(file)
-    return description[package]
+    external_description_path = os.path.join(
+        os.environ["PATH_CYBERSEC"], "tools", "external.json"
+    )
+    with open(external_description_path, "r") as file:
+        external_description = json.load(file)
+
+    return (
+        description[package]
+        if package in description
+        else external_description[package]
+    )
 
 
 def get_packages():
@@ -18,11 +28,16 @@ def get_packages():
 
     with open(cybersec_path, "r") as file:
         for line in file:
-            if "with pkgs;" in line:
+            if "[" in line and "++" in line:
+                continue
+            elif "with pkgs;" in line:
                 current_list = line.split()[0]
                 packages[current_list] = []
-            elif current_list and "];" not in line:
-                packages[current_list].append(line.strip())
+            elif current_list and "]" not in line:
+                if "inputs" in line:
+                    packages[current_list].append(line.split(".")[-1].strip())
+                else:
+                    packages[current_list].append(line.strip())
             elif current_list and "];" in line:
                 current_list = None
 

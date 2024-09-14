@@ -1,4 +1,4 @@
-args@{ self, pkgs, ... }:
+args@{ inputs, self, pkgs, ... }:
 let
   packages = import ./pkgs.nix args;
   generalPackages = packages.general;
