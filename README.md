@@ -8,16 +8,33 @@
 nix develop github:ch4og/nixcybersec
 ```
 
-Or if you want to use specific category:
+### Notes
+
+#### List of tools
+
+To get list of tools you can use `tools` command.
+
+#### Categories
+
+If you want to use specific category:
 
 ```bash
 nix develop github:ch4og/nixcybersec#<category>
 ```
 
-To list tools there is `tools` command. You can use `grep` with it to search for
-specific tool.
+- `default` - all tools (unbelievable but it's default)
+- `general` - tools that can be used in any category
+- `reverse` - reverse engineering and pwn tools
+- `cracking` - cracking tools
+- `exploits` - tools for exploiting
+- `web` - web tools
+- `network` - network tools
+- `forensics` - forensics tools
+- `windows` - windows tools
 
-You can also create shell alias for this flake:
+#### Shell alias
+
+You can create alias for devshell like this:
 
 ```nix
 bash.shellAliases = {
@@ -25,11 +42,8 @@ bash.shellAliases = {
 };
 ```
 
-So you will be able to run devshell with `cybersec` command.
-
-Or specific tool with `cybersec -c <tool>`
-
-### Notes
+Now you can use `cybersec` command to enter devshell or `cybersec -c <tool>` to
+run specific tool.
 
 #### Add to hosts
 
@@ -45,9 +59,8 @@ very convenient.
 If you plan to use wireshark please note that it will work only with root
 privileges.
 
-So you can use `sudo -E wireshark`.
+So you can use `sudo -E wireshark` to run wireshark with root privileges.
 
-### TODO:
+### TODO
 
-- [x] Make tools script give info about each tool
-- [x] Create separate devshells for each category
+- [ ] Rewrite tools using Nix
