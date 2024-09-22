@@ -1,22 +1,34 @@
 args@{ inputs, self, pkgs, ... }:
 let
-  packages = import ./pkgs.nix args;
-  generalPackages = packages.general;
-  hook = builtins.replaceStrings [ "SELF_HERE" ] [ (toString self) ] (builtins.readFile ./hook.sh);
+  packages_all = import ./pkgs.nix args;
+  generalPackages = packages_all.general;
 
   shells = builtins.mapAttrs
-    (n: v: pkgs.mkShell {
+    (n: v: pkgs.mkShell rec {
       packages = v ++ generalPackages;
       name = n;
-      shellHook = hook;
+      shellHook = builtins.replaceStrings
+        [ "TOOLS_HERE" "PATH_HERE" ]
+        [
+          (builtins.concatStringsSep "\n" (import ./tools/desc.nix { inherit pkgs packages_all args name; }))
+          (toString self)
+        ]
+        (builtins.readFile ./tools/hook.sh);
     })
-    packages;
+    packages_all;
 in
 shells
   // {
-  default = pkgs.mkShell {
-    packages = pkgs.lib.flatten (builtins.attrValues packages);
+  default = pkgs.mkShell rec {
+    packages = pkgs.lib.flatten (builtins.attrValues packages_all);
     name = "default";
-    shellHook = hook;
+    shellHook = builtins.replaceStrings
+      [ "TOOLS_HERE" "PATH_HERE" ]
+      [
+        (builtins.concatStringsSep "\n" (import ./tools/desc.nix { inherit pkgs packages_all args name; }))
+        (toString self)
+      ]
+      (builtins.readFile ./tools/hook.sh);
   };
 }
+

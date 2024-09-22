@@ -12,7 +12,7 @@ nix develop github:ch4og/nixcybersec
 
 #### List of tools
 
-To get list of tools you can use `tools` command.
+To get list of tools you can use `echo $sectools` command.
 
 #### Categories
 
@@ -60,7 +60,3 @@ If you plan to use wireshark please note that it will work only with root
 privileges.
 
 So you can use `sudo -E wireshark` to run wireshark with root privileges.
-
-### TODO
-
-- [ ] Rewrite tools using Nix

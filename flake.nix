@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     binsider = {
-      url = "github:ch4og/binsider";
+      url = "github:orhun/binsider";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

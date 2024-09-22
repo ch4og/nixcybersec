@@ -8,15 +8,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1726330636,
-        "narHash": "sha256-RXxrLtYih9jXGYOXKoFWtQRrmtw/HD5cH8FZslFsQYY=",
-        "owner": "ch4og",
+        "lastModified": 1726750425,
+        "narHash": "sha256-KiWnHAGtLZZTq96rwH7IJ4fQhJfkNFg7VnfkdIi1R2s=",
+        "owner": "orhun",
         "repo": "binsider",
-        "rev": "9579a331af57e182132ef503fb9087385c7ae105",
+        "rev": "3a7dec75482a899aa2b93d8ef5f0d15411811918",
         "type": "github"
       },
       "original": {
-        "owner": "ch4og",
+        "owner": "orhun",
         "repo": "binsider",
         "type": "github"
       }
@@ -41,11 +41,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1726463316,
-        "narHash": "sha256-gI9kkaH0ZjakJOKrdjaI/VbaMEo9qBbSUl93DnU7f4c=",
+        "lastModified": 1726755586,
+        "narHash": "sha256-PmUr/2GQGvFTIJ6/Tvsins7Q43KTMvMFhvG6oaYK+Wk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "99dc8785f6a0adac95f5e2ab05cc2e1bf666d172",
+        "rev": "c04d5652cfa9742b1d519688f65d1bbccea9eb7e",
         "type": "github"
       },
       "original": {

@@ -2,11 +2,7 @@
 default:
 	@just --list
 
-# genereate description for all packages
-desc:
-  cd tools && python3 dump.py
-
-# update all packages
-update:
+# run shell
+develop:
   git add -A
-  nix flake update
+  nix develop
