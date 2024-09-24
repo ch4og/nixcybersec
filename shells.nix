@@ -10,7 +10,7 @@ let
       shellHook = builtins.replaceStrings
         [ "TOOLS_HERE" "PATH_HERE" ]
         [
-          (builtins.concatStringsSep "\n" (import ./tools/desc.nix { inherit pkgs packages_all args name; }))
+          (builtins.concatStringsSep "\\n" (import ./tools/desc.nix { inherit pkgs packages_all args name; }))
           (toString self)
         ]
         (builtins.readFile ./tools/hook.sh);
@@ -25,7 +25,7 @@ shells
     shellHook = builtins.replaceStrings
       [ "TOOLS_HERE" "PATH_HERE" ]
       [
-        (builtins.concatStringsSep "\n" (import ./tools/desc.nix { inherit pkgs packages_all args name; }))
+        (builtins.concatStringsSep "\\n" (import ./tools/desc.nix { inherit pkgs packages_all args name; }))
         (toString self)
       ]
       (builtins.readFile ./tools/hook.sh);

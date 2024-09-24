@@ -12,7 +12,7 @@ nix develop github:ch4og/nixcybersec
 
 #### List of tools
 
-To get list of tools you can use `echo $sectools` command.
+To get list of tools you can use `echo -e $sectools` command.
 
 #### Categories
 
@@ -31,6 +31,12 @@ nix develop github:ch4og/nixcybersec#<category>
 - `network` - network tools
 - `forensics` - forensics tools
 - `windows` - windows tools
+
+#### Wordlists
+
+Since Nix is immutable you can't put wordlists to `/usr/share/wordlists`
+
+To show all wordlists locations just use `wordlists` command.
 
 #### Shell alias
 
