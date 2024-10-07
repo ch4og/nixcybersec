@@ -13,7 +13,6 @@ let
       zsh
       netcat-gnu
       wordlists
-      python2
       unrar
       unzip
       p7zip

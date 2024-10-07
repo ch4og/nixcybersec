@@ -32,6 +32,33 @@ nix develop github:ch4og/nixcybersec#<category>
 - `forensics` - forensics tools
 - `windows` - windows tools
 
+#### Python 2
+
+Python 2 is not included here cause it's EOL. It is commonly used for printing
+correct bytes
+
+Reason why is this behavior:
+
+```sh
+$ python2 -c 'print("\xFF")' | hexdump
+0000000 0aff
+0000002
+
+$ python3 -c 'print("\xFF")' | hexdump
+0000000 bfc3 000a
+0000003
+```
+
+The easy way to print bytes with python3 that I use is:
+
+```sh
+$ python3 -c '__import__("os").write(1,b"\xFF\n")' | hexdump
+0000000 0aff
+0000002
+```
+
+Where `1` is stdout file descriptor.
+
 #### Wordlists
 
 Since Nix is immutable you can't put wordlists to `/usr/share/wordlists`
