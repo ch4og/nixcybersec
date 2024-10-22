@@ -2,7 +2,7 @@
   description = "Cybersecurity tools for Nix";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs?rev=f02308bfe52ff4de092dd3e592dc44e844d1058a"; # https://nixpk.gs/pr-tracker.html?pr=350385
     binsider = {
       url = "github:orhun/binsider";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +18,11 @@
           allowUnfree = true;
           allowInsecurePredicate = p: true;
         };
+        overlays = [
+          (final: prev: {
+            binsider = inputs.binsider.packages.${prev.system};
+          })
+        ];
       };
     in
     {

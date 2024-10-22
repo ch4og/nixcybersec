@@ -34,7 +34,6 @@ let
     ];
 
     cracking = with pkgs; [
-      crowbar
       thc-hydra
       hashcat
       hashcat-utils
@@ -84,9 +83,7 @@ let
       gef
       pwndbg
       ghidra-bin
-    ]
-    ++ [
-      inputs.binsider.packages.${pkgs.system}.binsider
+      binsider.default
     ];
 
     forensics = with pkgs; [
