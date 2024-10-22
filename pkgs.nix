@@ -62,6 +62,7 @@ let
       caido
       sqlmap
       katana
+      wapiti
     ];
 
     network = with pkgs; [
