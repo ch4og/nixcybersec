@@ -1,7 +1,9 @@
-{ inputs, pkgs, ... }:
-let
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   packages = {
-
     general = with pkgs; [
       git
       python3
@@ -103,7 +105,6 @@ let
       bloodhound
       netexec
     ];
-
   };
 in
-packages
+  packages
