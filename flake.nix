@@ -3,10 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    binsider = {
-      url = "github:orhun/binsider";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs @ {
@@ -21,11 +17,6 @@
         allowUnfree = true;
         allowInsecurePredicate = p: true;
       };
-      overlays = [
-        (final: prev: {
-          binsider = inputs.binsider.packages.${prev.system};
-        })
-      ];
     };
   in {
     devShells.x86_64-linux = import ./shells.nix {

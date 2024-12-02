@@ -85,7 +85,7 @@
       gef
       pwndbg
       ghidra-bin
-      binsider.default
+      binsider
     ];
 
     forensics = with pkgs; [
