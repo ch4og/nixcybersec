@@ -93,3 +93,10 @@ If you plan to use wireshark please note that it will work only with root
 privileges.
 
 So you can use `sudo -E wireshark` to run wireshark with root privileges.
+
+#### Dynamic executables
+
+Since NixOS by design prevents running dynamically linked executables, 
+this flake uses FHS as wrapper for your preffered shell. 
+
+`fhs` command runs automatically as a shell hook
