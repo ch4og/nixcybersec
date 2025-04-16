@@ -59,6 +59,13 @@ $ python3 -c '__import__("os").write(1,b"\xFF\n")' | hexdump
 
 Where `1` is stdout file descriptor.
 
+Or even better use perl:
+```sh
+perl -e 'print "\xFF\n"' | hexdump
+0000000 0aff
+0000002
+```
+
 #### Wordlists
 
 Since Nix is immutable you can't put wordlists to `/usr/share/wordlists`
