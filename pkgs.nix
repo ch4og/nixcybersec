@@ -5,14 +5,15 @@
 }: let
   packages = {
     general = with pkgs; [
-      (pkgs.buildFHSEnv (pkgs.appimageTools.defaultFhsEnvArgs // {
-        name = "fhs";
-        profile = ''export FHS=1'';
-        runScript = "$(awk -F: -v user=\"$USER\" '$1 == user {print $NF}' /etc/passwd)";
-        meta = {
-          description = "FHS environment that allows running dynamically linked executables on NixOS";
-        };
-      }))
+      (pkgs.buildFHSEnv (pkgs.appimageTools.defaultFhsEnvArgs
+        // {
+          name = "fhs";
+          profile = ''export FHS=1'';
+          runScript = "$(awk -F: -v user=\"$USER\" '$1 == user {print $NF}' /etc/passwd)";
+          meta = {
+            description = "FHS environment that allows running dynamically linked executables on NixOS";
+          };
+        }))
       git
       python3
       wget
@@ -108,6 +109,7 @@
       nbtscan
       bloodhound
       netexec
+      evil-winrm
     ];
   };
 in
