@@ -59,19 +59,22 @@
       sploitscan
     ];
 
-    web = with pkgs; [
-      ffuf
-      dirb
-      wfuzz
-      gobuster
-      wpscan
-      nikto
-      knockpy
-      subfinder
-      burpsuite
-      caido
-      sqlmap
-    ];
+    web = with pkgs;
+      [
+        ffuf
+        dirb
+        wfuzz
+        gobuster
+        wpscan
+        nikto
+        knockpy
+        subfinder
+        burpsuite
+        sqlmap
+      ]
+      ++ lib.optionals (pkgs.stdenv.isLinux && pkgs.stdenv.hostPlatform.isx86_64) [
+        caido
+      ];
 
     network = with pkgs; [
       wireshark
@@ -93,24 +96,30 @@
       ghidra-bin
     ];
 
-    forensics = with pkgs; [
-      stegseek
-      foremost
-      autopsy
-      binwalk
-      exiftool
-      git-secret
-    ];
+    forensics = with pkgs;
+      [
+        stegseek
+        foremost
+        binwalk
+        exiftool
+        git-secret
+      ]
+      ++ lib.optionals (pkgs.stdenv.isLinux && pkgs.stdenv.hostPlatform.isx86_64) [
+        autopsy
+      ];
 
-    windows = with pkgs; [
-      enum4linux-ng
-      mimikatz
-      powersploit
-      nbtscan
-      bloodhound
-      netexec
-      evil-winrm
-    ];
+    windows = with pkgs;
+      [
+        enum4linux-ng
+        mimikatz
+        powersploit
+        nbtscan
+        netexec
+        evil-winrm
+      ]
+      ++ lib.optionals (pkgs.stdenv.isLinux && pkgs.stdenv.hostPlatform.isx86_64) [
+        bloodhound
+      ];
   };
 in
   packages
